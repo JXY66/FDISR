@@ -1,2 +1,2 @@
 # FDISR
-This code is in code review
+This code is for FDISR
