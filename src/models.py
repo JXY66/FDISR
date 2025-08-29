@@ -457,7 +457,7 @@ class SASRecModel(nn.Module):
 
 
         # 意图建模
-        user_intent_embeddings = self.user_intent(sequence_emb) # [batchsize, intent_num, intent_dim]
+        user_intent_embeddings = self.user_intent(sequence_emb_denoised) # [batchsize, intent_num, intent_dim]
 
 
         # 意图解纠缠
