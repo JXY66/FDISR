@@ -205,40 +205,6 @@ class ICLRecTrainer(Trainer):
     def iteration(self, epoch, dataloader, cluster_dataloader=None, full_sort=True, train=True):
         str_code = "train" if train else "test"
         if train:
-            # if self.args.cl_mode in ['cf','f']:
-            #     # ------ intentions clustering ----- #
-            #     print("Preparing Clustering:")
-            #     self.model.eval()
-            #     # save N
-            #     kmeans_training_data = []
-            #     rec_cf_data_iter = tqdm(enumerate(cluster_dataloader), total=len(cluster_dataloader))
-            #     for i, (rec_batch) in rec_cf_data_iter:
-            #         """
-            #         rec_batch shape: key_name x batch_size x feature_dim
-            #         cl_batches shape: 
-            #             list of n_views x batch_size x feature_dim tensors
-            #         """
-            #         # 0. batch_data will be sent into the device(GPU or CPU)
-            #         rec_batch = tuple(t.to(self.device) for t in rec_batch)
-            #         _, subsequence, _, _, _ = rec_batch
-            #         sequence_output_a, cl_loss = self.model(subsequence) # [BxLxH]
-            #         sequence_output_b=sequence_output_a[:,-1,:] # [BxH]
-            #         kmeans_training_data.append(sequence_output_b.detach().cpu().numpy())
-
-            #     kmeans_training_data = np.concatenate(kmeans_training_data, axis=0)
-            #     kmeans_training_data_t = [kmeans_training_data]
-
-            #     for i, clusters in tqdm(enumerate(self.clusters_t), total=len(self.clusters_t)):
-            #         for j, cluster in enumerate(clusters):
-            #             cluster.train(kmeans_training_data_t[i])
-            #             self.clusters_t[i][j] = cluster
-
-            #     # clean memory
-            #     del kmeans_training_data
-            #     del kmeans_training_data_t
-            #     import gc
-            #     gc.collect()
-
             # ------ model training -----#
             print("Performing Rec model Training:")
             self.model.train()
